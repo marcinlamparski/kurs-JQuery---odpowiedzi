@@ -32,19 +32,19 @@ Wyświetl komunikat pod formularzem informujący, ile pól wymaga uzupełnienia-
 
 <script>
 $(function() {
-    // ===== OBSŁUGA PRZYCISKU "SPRAWDŹ" =====
+   
     $("#checkBtn").on("click", function() {
         // Licznik pustych pól
         var emptyCount = 0;
 
-        // ===== ITERACJA PO WSZYSTKICH POLACH INPUT =====
+        
         // Wybierz wszystkie <input> w formularzu #registerForm
         $("#registerForm input").each(function() {
             // Pobierz wartość pola i usuń białe znaki z obu stron
             // trim() - usuwa spacje, tabulatory itp. z początku i końca
             var value = $(this).val().trim();
 
-            // ===== SPRAWDZENIE, CZY POLE JEST PUSTE =====
+            
             if (value === "") {
                 // Pole puste - usuń klasę "valid" i dodaj "error"
                 // removeClass() - usuwa klasę CSS
@@ -73,4 +73,5 @@ $(function() {
 </script>
 
 </body>
+
 </html>
