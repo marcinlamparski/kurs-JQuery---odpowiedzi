@@ -30,14 +30,14 @@ NIE zawierają wpisanej frazy, a pokaż te, które ją zawierają
 
 <script>
 $(function() {
-    // ===== OBSŁUGA PRZYCISKU "SZUKAJ" =====
+    
     $("#searchBtn").on("click", function() {
         // Pobierz wartość z pola tekstowego
         // val() - zwraca wartość pola input, select, textarea
         // toLowerCase() - zamienia na małe litery (bez względu na wielkość liter)
         var term = $("#searchInput").val().toLowerCase();
 
-        // ===== ITERACJA PO KAŻDYM ELEMENCIE LISTY =====
+        
         // each() - pętla po wszystkich wybranych elementach
         // Wewnątrz: $(this) odnosi się do aktualnie przetwarzanego elementu
         $("#fruitList li").each(function() {
@@ -45,7 +45,7 @@ $(function() {
             // text() - zwraca tekst zawartości elementu
             var text = $(this).text().toLowerCase();
 
-            // ===== LOGIKA FILTROWANIA =====
+            
             if (term === "") {
                 // Przypadek 1: Pole wyszukiwania puste
                 // Pokaż wszystkie elementy
@@ -64,7 +64,7 @@ $(function() {
         });
     });
 
-    // ===== OBSŁUGA PRZYCISKU "RESET" =====
+   
     $("#resetBtn").on("click", function() {
         // Wyczyść pole tekstowe (ustaw wartość na pusty string)
         $("#searchInput").val("");
@@ -77,4 +77,5 @@ $(function() {
 
 
 </body>
+
 </html>
