@@ -41,21 +41,21 @@ Wyświetlić poniżej tekst "Wybrano: [nazwa pozycji]"-->
 
 <script>
 $(function() {
-    // ===== OBSŁUGA KLIKNIĘCIA NA KAŻDY ELEMENT MENU =====
+    
     // Wybierz wszystkie <li> wewnątrz #menu
     // Dla każdego kliknięcia wykonaj funkcję
     $("#menu li").on("click", function() {
-        // ===== USUŃ KLASĘ "ACTIVE" ZE WSZYSTKICH ELEMENTÓW =====
+        
         // Najpierw odznacz wszystkie elementy menu
         // removeClass() usuwa klasę ze wszystkich wybranych elementów
         $("#menu li").removeClass("active");
         
-        // ===== DODAJ KLASĘ "ACTIVE" DO KLIKNIĘTEGO ELEMENTU =====
+        
         // $(this) - odnosi się do klikniętego elementu
         // addClass() - dodaje klasę CSS
         $(this).addClass("active");
 
-        // ===== WYŚWIETL WYBRANĄ POZYCJĘ =====
+        
         // text() - pobiera tekst z $(this) (klikniętego elementu)
         var text = $(this).text();
         
@@ -67,4 +67,5 @@ $(function() {
 </script>
 
 </body>
+
 </html>
