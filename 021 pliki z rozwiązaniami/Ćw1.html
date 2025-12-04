@@ -1,0 +1,44 @@
+## Ćwiczenie 1 – Przełącznik widoczności (rozwiązanie)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ćwiczenie 1 - Przełącznik widoczności</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>Przełącznik widoczności</h1>
+
+<div id="box1">Zawartość box 1</div>
+<div id="box2">Zawartość box 2</div>
+<div id="box3">Zawartość box 3</div>
+
+<button id="hideBox1">Ukryj box 1</button>
+<button id="hideBox2">Ukryj box 2</button>
+<button id="hideBox3">Ukryj box 3</button>
+<button id="showAll">Pokaż wszystko</button>
+
+<script>
+$(function() {
+    $("#hideBox1").on("click", function() {
+        $("#box1").hide();
+    });
+
+    $("#hideBox2").on("click", function() {
+        $("#box2").hide();
+    });
+
+    $("#hideBox3").on("click", function() {
+        $("#box3").hide();
+    });
+
+    $("#showAll").on("click", function() {
+        $("#box1, #box2, #box3").show();
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!-- pole tekstowe do //wyszukiwania oraz listę elementów. Po kliknięciu przycisku "Szukaj", ukryj wszystkie elementy listy, 
+NIE zawierają wpisanej frazy, a pokaż te, które ją zawierają
+Ćwiczenie 3 – Wyszukiwanie na liście (rozwiązanie)-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ćwiczenie 3 - Wyszukiwarka</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>Wyszukiwarka owoców</h1>
+
+<input type="text" id="searchInput" placeholder="Wpisz nazwę owocu...">
+<button id="searchBtn">Szukaj</button>
+<button id="resetBtn">Reset</button>
+
+<ul id="fruitList">
+    <li>Jabłko</li>
+    <li>Banan</li>
+    <li>Pomarańcza</li>
+    <li>Gruszka</li>
+    <li>Winogrono</li>
+    <li>Arbuz</li>
+    <li>Truskawka</li>
+    <li>Malina</li>
+</ul>
+
+<script>
+$(function() {
+    // ===== OBSŁUGA PRZYCISKU "SZUKAJ" =====
+    $("#searchBtn").on("click", function() {
+        // Pobierz wartość z pola tekstowego
+        // val() - zwraca wartość pola input, select, textarea
+        // toLowerCase() - zamienia na małe litery (bez względu na wielkość liter)
+        var term = $("#searchInput").val().toLowerCase();
+
+        // ===== ITERACJA PO KAŻDYM ELEMENCIE LISTY =====
+        // each() - pętla po wszystkich wybranych elementach
+        // Wewnątrz: $(this) odnosi się do aktualnie przetwarzanego elementu
+        $("#fruitList li").each(function() {
+            // Pobierz tekst z aktualnego elementu <li>
+            // text() - zwraca tekst zawartości elementu
+            var text = $(this).text().toLowerCase();
+
+            // ===== LOGIKA FILTROWANIA =====
+            if (term === "") {
+                // Przypadek 1: Pole wyszukiwania puste
+                // Pokaż wszystkie elementy
+                $(this).show();
+            } else if (text.indexOf(term) === -1) {
+                // Przypadek 2: Tekst NIE zawiera szukanej frazy
+                // indexOf() zwraca -1, jeśli nie znaleziono
+                // Ukryj element
+                $(this).hide();
+            } else {
+                // Przypadek 3: Tekst zawiera szukaną frazę
+                // indexOf() zwraca pozycję >= 0 jeśli znaleziono
+                // Pokaż element
+                $(this).show();
+            }
+        });
+    });
+
+    // ===== OBSŁUGA PRZYCISKU "RESET" =====
+    $("#resetBtn").on("click", function() {
+        // Wyczyść pole tekstowe (ustaw wartość na pusty string)
+        $("#searchInput").val("");
+        
+        // Pokaż wszystkie elementy listy
+        $("#fruitList li").show();
+    });
+});
+</script>
+
+
+</body>
+</html>

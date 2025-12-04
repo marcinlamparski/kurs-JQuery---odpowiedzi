@@ -1,0 +1,76 @@
+<!---Stwórz prosty formularz rejestracji z polami: nazwa użytkownika, email i hasło. Po kliknięciu przycisku "Sprawdź":
+
+Zaznacz na czerwono obramowanie wszystkich pustych pól
+Zaznacz na zielono obramowanie pól, które są wypełnione
+Wyświetl komunikat pod formularzem informujący, ile pól wymaga uzupełnienia-->
+## Ćwiczenie 4 – Formularz rejestracji (rozwiązanie)
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ćwiczenie 4 - Formularz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        input { display: block; margin: 10px 0; padding: 8px; width: 200px; }
+        .error { border: 2px solid red; }
+        .valid { border: 2px solid green; }
+    </style>
+</head>
+<body>
+
+<h1>Formularz rejestracji</h1>
+
+<form id="registerForm">
+    <input type="text" name="username" placeholder="Nazwa użytkownika">
+    <input type="email" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Hasło">
+    <button type="button" id="checkBtn">Sprawdź</button>
+</form>
+
+<p id="message"></p>
+
+<script>
+$(function() {
+    // ===== OBSŁUGA PRZYCISKU "SPRAWDŹ" =====
+    $("#checkBtn").on("click", function() {
+        // Licznik pustych pól
+        var emptyCount = 0;
+
+        // ===== ITERACJA PO WSZYSTKICH POLACH INPUT =====
+        // Wybierz wszystkie <input> w formularzu #registerForm
+        $("#registerForm input").each(function() {
+            // Pobierz wartość pola i usuń białe znaki z obu stron
+            // trim() - usuwa spacje, tabulatory itp. z początku i końca
+            var value = $(this).val().trim();
+
+            // ===== SPRAWDZENIE, CZY POLE JEST PUSTE =====
+            if (value === "") {
+                // Pole puste - usuń klasę "valid" i dodaj "error"
+                // removeClass() - usuwa klasę CSS
+                // addClass() - dodaje klasę CSS
+                $(this).removeClass("valid").addClass("error");
+                
+                // Zwiększ licznik pustych pól
+                emptyCount++;
+            } else {
+                // Pole wypełnione - usuń klasę "error" i dodaj "valid"
+                $(this).removeClass("error").addClass("valid");
+            }
+        });
+
+        // ===== WYŚWIETL KOMUNIKAT =====
+        if (emptyCount === 0) {
+            // Wszystkie pola wypełnione
+            $("#message").text("Wszystkie pola są wypełnione.");
+        } else {
+            // Niektóre pola są puste - wyświetl ich liczbę
+            $("#message").text("Liczba pustych pól: " + emptyCount);
+        }
+    });
+});
+</script>
+</script>
+
+</body>
+</html>

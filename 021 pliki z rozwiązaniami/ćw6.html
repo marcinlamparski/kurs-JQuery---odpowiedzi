@@ -1,0 +1,79 @@
+<!--Stwórz prostą galerię z miniaturami (4 małe divy reprezentujące obrazki). Po kliknięciu na miniaturę:
+
+Duży div "podgląd" powinien zmienić swój kolor tła na kolor miniatury
+Pod podglądem powinien wyświetlić się tekst z numerem wybranej miniatury (np. "Obrazek 3")
+Wybrana miniatura powinna otrzymać obramowanie-->
+
+## Ćwiczenie 6 – Dynamiczna galeria (rozwiązanie)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ćwiczenie 6 - Galeria</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .thumbnail {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .thumbnail.selected { border: 3px solid black; }
+        #preview {
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Galeria</h1>
+
+<div id="thumbnails">
+    <div class="thumbnail" data-color="#e74c3c" data-number="1" style="background: #e74c3c;"></div>
+    <div class="thumbnail" data-color="#3498db" data-number="2" style="background: #3498db;"></div>
+    <div class="thumbnail" data-color="#2ecc71" data-number="3" style="background: #2ecc71;"></div>
+    <div class="thumbnail" data-color="#9b59b6" data-number="4" style="background: #9b59b6;"></div>
+</div>
+
+<div id="preview"></div>
+<p id="imageInfo">Wybierz obrazek</p>
+
+<script>
+$(function() {
+    
+    // Wybierz wszystkie elementy z klasą "thumbnail"
+    $(".thumbnail").on("click", function() {
+        
+        // data() - pobiera atrybuty data-* z elementu
+        // Argument jest nazwą atrybutu bez prefiksu "data-"
+        // data-color → data("color")
+        // data-number → data("number")
+        var color = $(this).data("color");
+        var number = $(this).data("number");
+
+      
+        // Ustaw kolor tła elementu #preview na wybrany kolor
+        $("#preview").css("background-color", color);
+        
+       
+        // Ustaw tekst w #imageInfo
+        $("#imageInfo").text("Wybrano obrazek " + number);
+
+        
+        // Najpierw usuń klasę "selected" ze wszystkich miniatur
+        $(".thumbnail").removeClass("selected");
+        
+        // Potem dodaj klasę "selected" do klikniętej miniatury
+        // $(this) - kliknięty element
+        $(this).addClass("selected");
+    });
+});
+</script>
+
+</body>
+</html>

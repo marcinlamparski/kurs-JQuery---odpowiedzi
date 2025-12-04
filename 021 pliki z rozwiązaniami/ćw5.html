@@ -1,0 +1,70 @@
+<!--Stwórz menu nawigacyjne z kilkoma pozycjami. Kliknięcie na pozycję menu powinno:
+
+Podświetlić wybraną pozycję (dodać klasę "active" z żółtym tłem)
+Usunąć podświetlenie z poprzednio wybranej pozycji
+Wyświetlić poniżej tekst "Wybrano: [nazwa pozycji]"-->
+
+## Ćwiczenie 5 – Menu nawigacyjne (rozwiązanie)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ćwiczenie 5 - Menu nawigacyjne</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #menu { list-style: none; padding: 0; }
+        #menu li {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            margin: 2px 0;
+            cursor: pointer;
+        }
+        #menu li:hover { background: #2980b9; }
+        #menu li.active { background: #f1c40f; color: black; }
+    </style>
+</head>
+<body>
+
+<h1>Menu nawigacyjne</h1>
+
+<ul id="menu">
+    <li>Strona główna</li>
+    <li>O nas</li>
+    <li>Usługi</li>
+    <li>Portfolio</li>
+    <li>Kontakt</li>
+</ul>
+
+<p id="selected">Wybrano: brak</p>
+
+<script>
+$(function() {
+    // ===== OBSŁUGA KLIKNIĘCIA NA KAŻDY ELEMENT MENU =====
+    // Wybierz wszystkie <li> wewnątrz #menu
+    // Dla każdego kliknięcia wykonaj funkcję
+    $("#menu li").on("click", function() {
+        // ===== USUŃ KLASĘ "ACTIVE" ZE WSZYSTKICH ELEMENTÓW =====
+        // Najpierw odznacz wszystkie elementy menu
+        // removeClass() usuwa klasę ze wszystkich wybranych elementów
+        $("#menu li").removeClass("active");
+        
+        // ===== DODAJ KLASĘ "ACTIVE" DO KLIKNIĘTEGO ELEMENTU =====
+        // $(this) - odnosi się do klikniętego elementu
+        // addClass() - dodaje klasę CSS
+        $(this).addClass("active");
+
+        // ===== WYŚWIETL WYBRANĄ POZYCJĘ =====
+        // text() - pobiera tekst z $(this) (klikniętego elementu)
+        var text = $(this).text();
+        
+        // Ustaw tekst w paragrafie #selected
+        $("#selected").text("Wybrano: " + text);
+    });
+});
+</script>
+</script>
+
+</body>
+</html>
